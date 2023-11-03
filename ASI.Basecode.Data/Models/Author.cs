@@ -13,6 +13,6 @@ namespace ASI.Basecode.Data.Models
         public string LastName { get; set; }
 
         // Many-to-Many relationship
-        public virtual ICollection<AuthorBook> AuthorBooks { get; set; } = new List<AuthorBook>();
+        public virtual ICollection<AuthorBooks> AuthorBooks { get; set; } = new List<AuthorBook>();
     }
 }
