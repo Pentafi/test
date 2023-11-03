@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ASI.Basecode.Data.Repositories
 {
-    public class GenreRepository : BaseRepository, IBookRepository
+    public class GenreRepository : BaseRepository, IGenreRepository
     {
         public GenreRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
