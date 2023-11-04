@@ -14,7 +14,7 @@ namespace ASI.Basecode.Data.Models
         public DateTime PubDate { get; set; }
 
         // Many-to-Many relationship 
-        public virtual ICollection<AuthorBooks> AuthorBooks { get; set; } = new List<AuthorBook>();
+        public virtual ICollection<AuthorBooks> AuthorBooks { get; set; } = new List<AuthorBooks>();
         public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
     }
 }
