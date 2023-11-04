@@ -30,15 +30,17 @@ namespace ASI.Basecode.Data
         }
 
         public virtual DbSet<RefreshToken> RefreshToken { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
         /* public virtual DbSet<Review> Review { get; set; } */
 
 
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.UserId, "UQ__Users__1788CC4D5F4A160F")
@@ -77,6 +79,6 @@ namespace ASI.Basecode.Data
             OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);*/
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
