@@ -2,12 +2,11 @@
 using ASI.Basecode.Data.Models;
 using ASI.Basecode.Data.Interfaces;
 using Basecode.Data.Repositories;
-using Data.Interfaces;
-using Data.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASI.Basecode.Data.Repositories
 {
