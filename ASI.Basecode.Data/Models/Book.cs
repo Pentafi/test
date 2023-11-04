@@ -16,5 +16,7 @@ namespace ASI.Basecode.Data.Models
         // Many-to-Many relationship 
         public virtual ICollection<AuthorBooks> AuthorBooks { get; set; } = new List<AuthorBooks>();
         public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
+        public string Author { get; set; }
+        public string Title { get; set; }
     }
 }
