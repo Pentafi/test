@@ -10,11 +10,11 @@ namespace ASI.Basecode.Data.Interfaces
     public interface IBookRepository
     {
         IQueryable<Book> GetAllBooks();
-        Book GetBookById(int id);
+        Book GetBookById(int Id);
         void AddBook(Book book);
         void UpdateBook(Book book);
         void DeleteBook(int id);
         bool BookExists(int id);
-        bool BookExists(string bookID);
+        //bool BookExists(string bookID);
     }
 }
