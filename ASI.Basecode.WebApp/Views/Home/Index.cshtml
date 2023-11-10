@@ -44,14 +44,27 @@
     </nav>
 
     <!-- Bookshelf -->
-    <div class="container mt-4">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="container mt-4" style="background-color: lightpink; border-radius: 10px;">
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="display: flex; flex-wrap: nowrap;">
             <!-- Book 1 -->
-            <div class="col">
+            <div class="col" style="flex: 0 0 auto;">
                 <div class="card h-100">
-                    <img src="path_to_image" class="card-img-top" alt="...">
+                    <img src="https://assets.pokemon.com/assets/cms2/img/video-games/_tiles/pokemon-xy/pokemon-xy-launch-169.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Wicked Like a Wildfire</h5>
+                        <h5 class="card-title">Pokemon X and Y</h5>
+                        <p class="card-text">Description of the book...</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 5 mins ago</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Book 2 -->
+            <div class="col" style="flex: 0 0 auto;">
+                <div class="card h-100">
+                    <img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2016/12/pokemon-sun-6-1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Pokemon Black and White</h5>
                         <p class="card-text">Description of the book...</p>
                     </div>
                     <div class="card-footer">
@@ -59,9 +72,42 @@
                     </div>
                 </div>
             </div>
-            <!-- ... other books -->
+            <!-- Book 3 -->
+            <div class="col" style="flex: 0 0 auto;">
+                <div class="card h-100">
+                    <img src="https://ragglefragglereviews.files.wordpress.com/2021/09/maxresdefault-2.jpg?w=1200" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Pokemon Red, Blue, and Yellow</h5>
+                        <p class="card-text">Description of the book...</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 1 mins ago</small>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+    <!-- Recommendation Section -->
+    <div class="container mt-4">
+        <div class="card mb-3" style="background-color: lightgrey; border-radius: 10px; overflow: hidden;">
+            <div class="row g-0">
+                <div class="col-md-4" style="background: url('https://pm1.aminoapps.com/7159/1265b9bc477286d332bafd139477c409c4929ccar1-500-500v2_00.jpg') center; background-size: cover;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">One Piece, Volume 1: Romance Dawn (One Piece, #1)</h5>
+                        <p class="card-text"><small class="text-muted">★ ★ ★ ★ ☆</small></p>
+                        <p class="card-text">A new shonen sensation in Japan, this series features Monkey D. Luffy, whose main ambition is to become a pirate. Eating the Gum-Gum Fruit gives him strange powers but also in...</p>
+                        <a href="#" class="btn btn-primary" style=" background-color: pink;">Continue reading</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
