@@ -58,6 +58,21 @@ namespace ASI.Basecode.Data.Repositories
                 UnitOfWork.SaveChanges();
             }
         }
+        public IQueryable<Genre> GetBookGenre(int bookId)
+        {
+            var bookGenres = this.GetDbSet<BookGenre>()
+                .Include(bg => bg.Genre)
+                .Where(bg => bg.BookId == bookId)
+                .Select(bg => bg.Genre);
 
+            return bookGenres;
+        }
+        public IQueryable<Book> GetBookByAuthorId(int authorId)
+        {
+            return this.GetDbSet<Book>().Include(b => b.AuthorBooks)
+                       .Where(ab => ab.AuthorBooks.Any(a => a.AuthorId == authorId))
+                       .Include(b => b.BookGenres)
+                       .ThenInclude(bg => bg.Genre);
+        }
     }
 }
