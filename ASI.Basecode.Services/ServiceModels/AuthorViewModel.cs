@@ -7,15 +7,15 @@ namespace Services.Models
 {
     public class AuthorViewModel
     {
-        [JsonPropertyName("authorID")]
-        public int authorID { get; set; }
+        [JsonPropertyName("Id")]
+        public int Id { get; set; }
 
-        [JsonPropertyName("firstName")]
+        [JsonPropertyName("FirstName")]
         [Required(ErrorMessage = "First name is required.")]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
 
-        [JsonPropertyName("lastName")]
+        [JsonPropertyName("LastName")]
         [Required(ErrorMessage = "Last name is required.")]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
     }
 }

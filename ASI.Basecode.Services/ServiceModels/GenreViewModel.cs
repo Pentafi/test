@@ -8,11 +8,11 @@ namespace Services.Models
 
     public class GenreViewModel
     {
-        [JsonPropertyName("genreID")]
-        public int genreID { get; set; }
+        [JsonPropertyName("Id")]
+        public int Id { get; set; }
 
-        [JsonPropertyName("genreName")]
+        [JsonPropertyName("Name")]
         [Required(ErrorMessage = "Genre Name is required.")]
-        public string genreName { get; set; }
+        public string Name { get; set; }
     }
 }
