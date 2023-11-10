@@ -3,8 +3,8 @@
 *@
 @{
 }
-
-<div class='container'>
+<h1 class="font-weight-bold">EDIT BOOK</h1>
+<div class="container mt-4" style="background-color: lightpink; border-radius: 10px; padding: 20px;">
     <form id='book-app-form' class='needs-validation' novalidate>
         <div class='mb-3'>
             <label for='title' class='form-label'>Title:</label>
@@ -58,7 +58,10 @@
             </div>
         </div>
 
-        <button type='submit' class='btn btn-primary'>Submit</button>
+        <div class="align-content-end">
+            <button type='submit' class='btn btn-primary'>Submit</button>
+            <button type='button' class='btn btn-danger' onclick='deleteBook()'>Delete</button>
+        </div>
     </form>
 </div>
 
