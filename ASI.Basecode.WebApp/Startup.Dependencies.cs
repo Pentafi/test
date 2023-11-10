@@ -32,17 +32,15 @@ namespace ASI.Basecode.WebApp
             // Services
             services.AddSingleton<TokenValidationParametersFactory>();
             services.AddScoped<IUserService, UserService>();
-
+            services.AddScoped<IBookService, BookService>();
+            /* services.AddScoped<IReviewService, ReviewService>(); kailangan og reviewservices sa services folder diri - justinwapo */
+            services.AddScoped<IGenreService, GenreService>();
 
             // Repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
-
-            services.AddScoped<IBookService, BookService>();
-            /* services.AddScoped<IReviewService, ReviewService>(); kailangan og reviewservices sa services folder diri - justinwapo */
-            services.AddScoped<IGenreService, GenreService>();
 
             // Manager Class
             services.AddScoped<SignInManager>();
