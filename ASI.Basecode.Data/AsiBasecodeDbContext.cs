@@ -15,8 +15,13 @@ namespace ASI.Basecode.Data
         public AsiBasecodeDBContext(DbContextOptions<AsiBasecodeDBContext> options)
             : base(options)
         {
+            EnsureDatabaseSeeded();
         }
-
+        private void EnsureDatabaseSeeded()
+        {
+            var seeder = new DataSeeder(this);
+            seeder.Seed();
+        }
         public void InsertNew(RefreshToken token)
         {
             var tokenModel = RefreshToken.SingleOrDefault(i => i.Username == token.Username);
