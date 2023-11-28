@@ -1,9 +1,9 @@
-﻿/*using System;
+﻿using ASI.Basecode.Data.Interfaces;
 using ASI.Basecode.Data.Models;
-using ASI.Basecode.Data.Interfaces;
 using Basecode.Data.Repositories;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +16,20 @@ namespace ASI.Basecode.Data.Repositories
         {
         }
 
-        public IQueryable<Review> GetAllReviews()
+        public IQueryable<Review> GetReviews()
         {
             return this.GetDbSet<Review>();
         }
-
-        public Review GetReviewById(int id)
+        public Task<Review> GetReviewsById(string reviewId)
         {
-            return this.GetDbSet<Review>().Find(id);
+            var review = this.GetDbSet<Review>().Where(r => r.reviewId == reviewId).SingleOrDefaultAsync();
+
+            return review;
+        }
+
+        public IQueryable<Review> GetBookReview(string bookId)
+        {
+            return this.GetDbSet<Review>().Where(r => r.bookId == bookId);
         }
 
         public void AddReview(Review review)
@@ -32,26 +38,31 @@ namespace ASI.Basecode.Data.Repositories
             UnitOfWork.SaveChanges();
         }
 
-        public void UpdateReview(Review review)
+        public void DeleteReview(string reviewId)
         {
-            this.SetEntityState(review, EntityState.Modified);
-            UnitOfWork.SaveChanges();
-        }
+            var review = this.GetDbSet<Review>().SingleOrDefault(r => r.reviewId == reviewId);
 
-        public void DeleteReview(int id)
-        {
-            var review = this.GetDbSet<Review>().Find(id);
             if (review != null)
             {
                 this.GetDbSet<Review>().Remove(review);
                 UnitOfWork.SaveChanges();
             }
+
         }
 
-        public bool ReviewExists(int id)
+        public void UpdateReview(Review update)
         {
-            return this.GetDbSet<Review>().Any(x => x.Id == id);
+            var review = this.GetDbSet<Review>().SingleOrDefault(r => r.reviewId == update.reviewId);
+
+            if (review != null)
+            {
+                review.reviewerFirstName = update.reviewerFirstName;
+                review.reviewerLastName = update.reviewerLastName;
+                review.reviewerEmail = update.reviewerEmail;
+                review.content = update.content;
+                review.rating = update.rating;
+                UnitOfWork.SaveChanges();
+            }
         }
-    }
+    } 
 }
-*/
