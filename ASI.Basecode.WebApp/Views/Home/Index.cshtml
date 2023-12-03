@@ -1,10 +1,12 @@
-﻿﻿@{
+﻿@model IEnumerable<ASI.Basecode.Data.Models.Book>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
 @section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
 }
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,49 +48,26 @@
     <!-- Bookshelf -->
     <div class="container mt-4" style="background-color: lightpink; border-radius: 10px;">
         <div class="row row-cols-1 row-cols-md-3 g-4" style="display: flex; flex-wrap: nowrap;">
-            <!-- Book 1 -->
-            <div class="col" style="flex: 0 0 auto;">
-                <div class="card h-100">
-                    <img src="https://assets.pokemon.com/assets/cms2/img/video-games/_tiles/pokemon-xy/pokemon-xy-launch-169.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pokemon X and Y</h5>
-                        <p class="card-text">Description of the book...</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 5 mins ago</small>
-                    </div>
-                </div>
-            </div>
-            <!-- Book 2 -->
-            <div class="col" style="flex: 0 0 auto;">
-                <div class="card h-100">
-                    <img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2016/12/pokemon-sun-6-1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pokemon Black and White</h5>
-                        <p class="card-text">Description of the book...</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-            <!-- Book 3 -->
-            <div class="col" style="flex: 0 0 auto;">
-                <div class="card h-100">
-                    <img src="https://ragglefragglereviews.files.wordpress.com/2021/09/maxresdefault-2.jpg?w=1200" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pokemon Red, Blue, and Yellow</h5>
-                        <p class="card-text">Description of the book...</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 1 mins ago</small>
-                    </div>
-                </div>
-            </div>
 
+            @foreach (var book in Model) {
+            <!-- Books -->
+            <div class="col" style="flex: 0 0 auto;">
+                <a href="@Url.Action("Details", "Home", new { id = book.Id })">
+                <div class="card h-100">
+                        <img src="@book.ImageUrl" class="card-img-top" alt="...">
+                    <div class="card-body">
+                            <h5 class="card-title">@book.Title</h5>
+                    </div>
+                    <div class="card-footer">
+                            <small class="text-muted">Last updated @book.LastUpdated</small>
+                    </div>
+                </div>
+                </a>
+            </div>
+            }
         </div>
     </div>
-
+    
     <!-- Recommendation Section -->
     <div class="container mt-4">
         <div class="card mb-3" style="background-color: lightgrey; border-radius: 10px; overflow: hidden;">

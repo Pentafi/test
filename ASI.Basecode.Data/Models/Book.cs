@@ -18,5 +18,7 @@ namespace ASI.Basecode.Data.Models
         public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
         public string Author { get; set; }
         public string Title { get; set; }
+        public string ImageUrl { get; set; }
+        public string LastUpdated { get; set; }
     }
 }
