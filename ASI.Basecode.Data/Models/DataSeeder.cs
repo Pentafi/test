@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +64,8 @@ namespace ASI.Basecode.Data.Models
                         Id = 1,
                         Name = "To Kill a Mockingbird",
                         Description = "A classic novel by Harper Lee.",
-                        PubDate = new DateTime(1960, 7, 11), 
+                        PubDate = new DateTime(1960, 7, 11),
+                        image = File.ReadAllBytes("path/to/your/image.jpg"),
                     },
                     new Book()
                     {
@@ -71,6 +73,7 @@ namespace ASI.Basecode.Data.Models
                         Name = "Pokeball",
                         Description = "Catch anything",
                         PubDate = new DateTime(2022, 3, 12),
+                        image = File.ReadAllBytes("path/to/your/image.jpg"),
                     },
                     new Book()
                     {
@@ -78,6 +81,7 @@ namespace ASI.Basecode.Data.Models
                         Name = "1984",
                         Description = "A dystopian novel by George Orwell.",
                         PubDate = new DateTime(1949, 6, 8),
+                        image = File.ReadAllBytes("path/to/your/image.jpg"),
                     }
                 };
                 asiBasecodeDBContext.Books.AddRange(books);
