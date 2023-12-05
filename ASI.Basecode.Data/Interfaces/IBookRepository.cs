@@ -11,6 +11,8 @@ namespace ASI.Basecode.Data.Interfaces
     {
         IQueryable<Book> GetAllBooks();
         Book GetBookById(int Id);
+        IQueryable<Book> GetBookByAuthorId(int authorId);
+        IQueryable<Genre> GetGenreByBook(int bookId);
         void AddBook(Book book);
         void UpdateBook(Book book);
         void DeleteBook(int Id);

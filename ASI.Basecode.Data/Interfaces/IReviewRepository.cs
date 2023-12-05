@@ -1,5 +1,5 @@
-﻿using System;
-/* using ASI.Basecode.Data.Models;
+﻿using ASI.Basecode.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace ASI.Basecode.Data.Interfaces
 {
-    class IReviewRepository
+    public interface IReviewRepository
     {
         IQueryable<Review> GetAllReviews();
-        Author GetReviewsById(int id);
+        Review GetReviewById(int id);
+        IQueryable<Review> GetReviewsByBook(Book book);
         void AddReview(Review review);
         void UpdateReview(Review review);
         void DeleteReview(int id);
         bool ReviewExists(int id);
     }
-} */
+}

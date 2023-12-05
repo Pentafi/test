@@ -7,6 +7,9 @@ using ASI.Basecode.Services.Services;
 using ASI.Basecode.WebApp.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using PogoAdmin.Services.Services;
+using PogoAdmin.Services;
+using Services.Services;
 
 namespace ASI.Basecode.WebApp
 {
@@ -29,10 +32,15 @@ namespace ASI.Basecode.WebApp
             // Services
             services.AddSingleton<TokenValidationParametersFactory>();
             services.AddScoped<IUserService, UserService>();
-
+            services.AddScoped<IBookService, BookService>();
+            /* services.AddScoped<IReviewService, ReviewService>(); kailangan og reviewservices sa services folder diri - justinwapo */
+            services.AddScoped<IGenreService, GenreService>();
 
             // Repositories
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
 
             // Manager Class
             services.AddScoped<SignInManager>();

@@ -12,11 +12,10 @@ namespace ASI.Basecode.Data.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime PubDate { get; set; }
+        public byte[] image { get; set; }
 
         // Many-to-Many relationship 
         public virtual ICollection<AuthorBooks> AuthorBooks { get; set; } = new List<AuthorBooks>();
         public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
-        public string Author { get; set; }
-        public string Title { get; set; }
     }
 }

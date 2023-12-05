@@ -1,12 +1,8 @@
-﻿/*using System;
+﻿using ASI.Basecode.Data.Interfaces;
 using ASI.Basecode.Data.Models;
-using ASI.Basecode.Data.Interfaces;
 using Basecode.Data.Repositories;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASI.Basecode.Data.Repositories
 {
@@ -18,40 +14,44 @@ namespace ASI.Basecode.Data.Repositories
 
         public IQueryable<Review> GetAllReviews()
         {
-            return this.GetDbSet<Review>();
+            return GetDbSet<Review>();
         }
 
         public Review GetReviewById(int id)
         {
-            return this.GetDbSet<Review>().Find(id);
+            return GetDbSet<Review>().Find(id);
+        }
+
+        public IQueryable<Review> GetReviewsByBook(Book book)
+        {
+            return GetDbSet<Review>().Where(x => x.Id == book.Id);
         }
 
         public void AddReview(Review review)
         {
-            this.GetDbSet<Review>().Add(review);
+            GetDbSet<Review>().Add(review);
             UnitOfWork.SaveChanges();
         }
 
         public void UpdateReview(Review review)
         {
-            this.SetEntityState(review, EntityState.Modified);
+            GetDbSet<Review>().Update(review);
             UnitOfWork.SaveChanges();
         }
 
         public void DeleteReview(int id)
         {
-            var review = this.GetDbSet<Review>().Find(id);
+            var review = GetDbSet<Review>().Find(id);
             if (review != null)
             {
-                this.GetDbSet<Review>().Remove(review);
+                GetDbSet<Review>().Remove(review);
                 UnitOfWork.SaveChanges();
             }
         }
 
         public bool ReviewExists(int id)
         {
-            return this.GetDbSet<Review>().Any(x => x.Id == id);
+            return GetDbSet<Review>().Any(x => x.Id == id);
         }
     }
 }
-*/
