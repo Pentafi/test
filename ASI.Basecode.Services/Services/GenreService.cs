@@ -26,15 +26,15 @@ namespace PogoAdmin.Services.Services
             return _mapper.Map<IEnumerable<GenreViewModel>>(genres);
         }
 
-        public GenreViewModel GetGenreById(int genreID)
+        public GenreViewModel GetGenreById(int Id)
         {
-            var genre = _genreRepository.GetGenreById(genreID);
+            var genre = _genreRepository.GetGenreById(Id);
             return _mapper.Map<GenreViewModel>(genre);
         }
 
         public void AddGenre(GenreViewModel model)
         {
-            if (!_genreRepository.GenreExists(model.genreID))
+            if (!_genreRepository.GenreExists(model.Id))
             {
                 var genre = _mapper.Map<Genre>(model);
                 _genreRepository.AddGenre(genre);
@@ -48,9 +48,9 @@ namespace PogoAdmin.Services.Services
         public void UpdateGenre(GenreViewModel model)
         {
 
-            if (_genreRepository.GenreExists(model.genreID))
+            if (_genreRepository.GenreExists(model.Id))
             {
-                var existingGenre = _genreRepository.GetGenreById(model.genreID);
+                var existingGenre = _genreRepository.GetGenreById(model.Id);
                 _mapper.Map(model, existingGenre);
                 _genreRepository.UpdateGenre(existingGenre);
             }

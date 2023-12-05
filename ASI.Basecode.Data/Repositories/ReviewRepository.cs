@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASI.Basecode.Data.Repositories
 {
@@ -18,7 +16,7 @@ namespace ASI.Basecode.Data.Repositories
 
         public IQueryable<Review> GetReviews()
         {
-            return this.GetDbSet<Review>();
+            return GetDbSet<Review>();
         }
         public Task<Review> GetReviewsById(string reviewId)
         {
@@ -27,42 +25,39 @@ namespace ASI.Basecode.Data.Repositories
             return review;
         }
 
-        public IQueryable<Review> GetBookReview(string bookId)
+        public IQueryable<Review> GetReviewsByBook(Book book)
         {
-            return this.GetDbSet<Review>().Where(r => r.bookId == bookId);
+            return GetDbSet<Review>().Where(x => x.Id == book.Id);
+
         }
 
         public void AddReview(Review review)
         {
-            this.GetDbSet<Review>().Add(review);
+            GetDbSet<Review>().Add(review);
             UnitOfWork.SaveChanges();
         }
 
-        public void DeleteReview(string reviewId)
+        public void DeleteReview(int id)
         {
-            var review = this.GetDbSet<Review>().SingleOrDefault(r => r.reviewId == reviewId);
+            var review = GetDbSet<Review>().Find(id);
 
             if (review != null)
             {
-                this.GetDbSet<Review>().Remove(review);
+                GetDbSet<Review>().Remove(review);
                 UnitOfWork.SaveChanges();
             }
 
         }
 
-        public void UpdateReview(Review update)
+        public void UpdateReview(Review review)
         {
-            var review = this.GetDbSet<Review>().SingleOrDefault(r => r.reviewId == update.reviewId);
-
-            if (review != null)
-            {
-                review.reviewerFirstName = update.reviewerFirstName;
-                review.reviewerLastName = update.reviewerLastName;
-                review.reviewerEmail = update.reviewerEmail;
-                review.content = update.content;
-                review.rating = update.rating;
-                UnitOfWork.SaveChanges();
-            }
+            GetDbSet<Review>().Update(review);
+            UnitOfWork.SaveChanges();
         }
-    } 
+        public bool ReviewExists(int id)
+        {
+            return GetDbSet<Review>().Any(x => x.Id == id);
+        }
+    }
 }
+

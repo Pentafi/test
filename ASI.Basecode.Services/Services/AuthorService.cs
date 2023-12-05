@@ -29,15 +29,15 @@ namespace ASI.Basecode.Services.Services
             return _mapper.Map<IEnumerable<AuthorViewModel>>(authors);
         }
 
-        public AuthorViewModel GetAuthorById(int authorID)
+        public AuthorViewModel GetAuthorById(int Id)
         {
-            var author = _authorRepository.GetAuthorById(authorID);
+            var author = _authorRepository.GetAuthorById(Id);
             return _mapper.Map<AuthorViewModel>(author);
         }
 
         public void AddAuthor(AuthorViewModel model)
         {
-            if (!_authorRepository.AuthorExists(model.authorID))
+            if (!_authorRepository.AuthorExists(model.Id))
             {
                 var author = _mapper.Map<Author>(model);
                 _authorRepository.AddAuthor(author);
@@ -50,17 +50,17 @@ namespace ASI.Basecode.Services.Services
 
         public void UpdateAuthor(AuthorViewModel model)
         {
-            if (_authorRepository.AuthorExists(model.authorID))
+            if (_authorRepository.AuthorExists(model.Id))
             {
-                var existingAuthor = _authorRepository.GetAuthorById(model.authorID);
+                var existingAuthor = _authorRepository.GetAuthorById(model.Id);
                 _mapper.Map(model, existingAuthor);
                 _authorRepository.UpdateAuthor(existingAuthor);
             }
         }
 
-        public void DeleteAuthor(int authorID)
+        public void DeleteAuthor(int Id)
         {
-            _authorRepository.DeleteAuthor(authorID);
+            _authorRepository.DeleteAuthor(Id);
         }
     }
 }

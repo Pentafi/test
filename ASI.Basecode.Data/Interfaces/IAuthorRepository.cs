@@ -10,10 +10,10 @@ namespace ASI.Basecode.Data.Interfaces
     public interface IAuthorRepository
     {
         IQueryable<Author> GetAllAuthors();
-        Author GetAuthorById(int id);
+        Author GetAuthorById(int Id);
         void AddAuthor(Author author);
         void UpdateAuthor(Author author);
-        void DeleteAuthor(int id);
-        bool AuthorExists(int id);
+        void DeleteAuthor(int Id);
+        bool AuthorExists(int Id);
     }
 }

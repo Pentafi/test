@@ -30,15 +30,15 @@ namespace Services.Services
             return _mapper.Map<IEnumerable<BookViewModel>>(books);
         }
 
-        public BookViewModel GetBookById(int bookID)
+        public BookViewModel GetBookById(int Id)
         {
-            var book = _bookRepository.GetBookById(bookID);
+            var book = _bookRepository.GetBookById(Id);
             return _mapper.Map<BookViewModel>(book);
         }
 
         public void AddBook(BookViewModel model)
         {
-            if (!_bookRepository.BookExists(model.bookID))
+            if (!_bookRepository.BookExists(model.Id))
             {
                 var book = _mapper.Map<Book>(model);
                 _bookRepository.AddBook(book);
@@ -51,17 +51,17 @@ namespace Services.Services
 
         public void UpdateBook(BookViewModel model)
         {
-            if (_bookRepository.BookExists(model.bookID))
+            if (_bookRepository.BookExists(model.Id))
             {
-                var existingBook = _bookRepository.GetBookById(model.bookID);
+                var existingBook = _bookRepository.GetBookById(model.Id);
                 _mapper.Map(model, existingBook);
                 _bookRepository.UpdateBook(existingBook);
             }
         }
 
-        public void DeleteBook(int bookID)
+        public void DeleteBook(int Id)
         {
-            _bookRepository.DeleteBook(bookID);
+            _bookRepository.DeleteBook(Id);
         }
     }
 }

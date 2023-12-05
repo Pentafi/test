@@ -15,8 +15,13 @@ namespace ASI.Basecode.Data
         public AsiBasecodeDBContext(DbContextOptions<AsiBasecodeDBContext> options)
             : base(options)
         {
+            EnsureDatabaseSeeded();
         }
-
+        private void EnsureDatabaseSeeded()
+        {
+            var seeder = new DataSeeder(this);
+            seeder.Seed();
+        }
         public void InsertNew(RefreshToken token)
         {
             var tokenModel = RefreshToken.SingleOrDefault(i => i.Username == token.Username);
@@ -34,7 +39,7 @@ namespace ASI.Basecode.Data
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
-        /* public virtual DbSet<Review> Review { get; set; } */
+        public virtual DbSet<Review> Review { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
