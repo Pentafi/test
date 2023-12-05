@@ -1,27 +1,14 @@
-using Microsoft.AspNetCore.Authorization;
-
-﻿using ASI.Basecode.Services.Interfaces;
-using ASI.Basecode.Services.ServiceModels;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using static ASI.Basecode.Resources.Constants.Constants;
+using Microsoft.AspNetCore.Authorization; 
 
 namespace ASI.Basecode.WebApp.Controllers
-
 { 
-
-    [Authorize( Roles = "DESKTOP-6IUT334\\joshu")]
-
-
-{
     [Authorize(Roles = "SuperAdmin")]
-
     public class AdminController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
