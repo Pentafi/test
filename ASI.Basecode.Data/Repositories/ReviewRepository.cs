@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ASI.Basecode.Data.Repositories
 {
@@ -14,15 +15,25 @@ namespace ASI.Basecode.Data.Repositories
         {
         }
 
-        public IQueryable<Review> GetReviews()
+        public IQueryable<Review> GetAllReviews()
         {
             return GetDbSet<Review>();
         }
-        public Task<Review> GetReviewsById(string reviewId)
+        public async Task<Review> GetReviewById(int reviewId)
         {
-            var review = this.GetDbSet<Review>().Where(r => r.reviewId == reviewId).SingleOrDefaultAsync();
+            var review = await this.GetDbSet<Review>().Where(r => r.Id == reviewId).SingleOrDefaultAsync();
 
             return review;
+        }
+
+        public IQueryable<Review> GetBookReview(string bookId)
+        {
+            return GetDbSet<Review>().Where(r => r.BookId == bookId);
+        }
+
+        public IQueryable<Review> GetReviews()
+        {
+            return GetDbSet<Review>();
         }
 
         public IQueryable<Review> GetReviewsByBook(Book book)

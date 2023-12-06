@@ -18,201 +18,201 @@ using PogoAdmin.Services;
 using Services.ServiceModels;
 
 
-namespace ASI.Basecode.WebApp.Controllers
-{
-    public class BookController : Controller
-    {
+//namespace ASI.Basecode.WebApp.Controllers
+//{
+//    public class BookController : Controller
+//    {
 
-        private readonly IBookRepository _bookRepository;
+//        private readonly IBookRepository _bookRepository;
 
-        public BookController(IBookRepository bookRepository)
-        {
-            _bookRepository = bookRepository;
-        }
+//        public BookController(IBookRepository bookRepository)
+//        {
+//            _bookRepository = bookRepository;
+//        }
 
-        public IActionResult Index()
-        {
-            // Using GetAllBooks method to fetch all books
-            var books = _bookRepository.GetAllBooks().ToList();
-            return View(books);
-        }
+//        public IActionResult Index()
+//        {
+//            // Using GetAllBooks method to fetch all books
+//            var books = _bookRepository.GetAllBooks().ToList();
+//            return View(books);
+//        }
 
-        [HttpGet]
-        public IActionResult Create()
-        {
+//        //[HttpGet]
+//        //public IActionResult Create()
+//        //{ 
 
-        private readonly IMapper _mapper;
-        private readonly IBookService _bookService;
-        private readonly IAuthorService _authorService;
-        private readonly IGenreService _genreService;
-        private readonly ILogger<BookController> _logger;
+//        private readonly IMapper _mapper;
+//        private readonly IBookService _bookService;
+//        private readonly IAuthorService _authorService;
+//        private readonly IGenreService _genreService;
+//        private readonly ILogger<BookController> _logger;
 
-        public BookController(IMapper mapper, IBookService bookService, IAuthorService authorService, IGenreService genreService, ILogger<BookController> logger)
-        {
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _bookService = bookService ?? throw new ArgumentNullException(nameof(bookService));
-            _authorService = authorService ?? throw new ArgumentNullException(nameof(authorService));
-            _genreService = genreService ?? throw new ArgumentNullException(nameof(genreService));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
+//        public BookController(IMapper mapper, IBookService bookService, IAuthorService authorService, IGenreService genreService, ILogger<BookController> logger)
+//        {
+//            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+//            _bookService = bookService ?? throw new ArgumentNullException(nameof(bookService));
+//            _authorService = authorService ?? throw new ArgumentNullException(nameof(authorService));
+//            _genreService = genreService ?? throw new ArgumentNullException(nameof(genreService));
+//            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+//        }
+ 
+//        public IActionResult Index(string searchQuery)
+//        {
+//            var bookViewModels = _bookService.GetAllBooks();
 
-        public IActionResult Index(string searchQuery)
-        {
-            var bookViewModels = _bookService.GetAllBooks();
+//            if (!string.IsNullOrEmpty(searchQuery))
+//            {
+//                bookViewModels = bookViewModels.Where(b => b.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)).ToList();
+//            }
 
-            if (!string.IsNullOrEmpty(searchQuery))
-            {
-                bookViewModels = bookViewModels.Where(b => b.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)).ToList();
-            }
-
-            return View(bookViewModels);
-        }
+//            return View(bookViewModels);
+//        }
 
 
-        public IActionResult Details(int id)
-        {
-            var viewModel = _bookService.GetBookById(id);
-            if (viewModel is null)
-            {
-                _logger.LogWarning("Book with ID {BookId} not found.", id);
-                return NotFound();
-            }
+//        public IActionResult Details(int id)
+//        {
+//            var viewModel = _bookService.GetBookById(id);
+//            if (viewModel is null)
+//            {
+//                _logger.LogWarning("Book with ID {BookId} not found.", id);
+//                return NotFound();
+//            }
 
-            return View(viewModel);
-        }
-// CARL
-        [HttpGet]
-        public IActionResult Create()
-        {
-            var authors = _authorService.GetAllAuthors()
-                                   .Select(a => new
-                                   {
-                                       Id = a.Id,
-                                       FullName = a.FirstName + " " + a.LastName
-                                   })
-                                   .ToList();
-            var genres = _genreService.GetAllGenres()
-                                   .Select(g => new
-                                   {
-                                       Id = g.Id,
-                                       Name = g.Name
-                                   })
-                                   .ToList();
+//            return View(viewModel);
+//        }
+//        // CARL
+//        [HttpGet]
+//        public IActionResult Create()
+//        {
+//            var authors = _authorService.GetAllAuthors()
+//                                   .Select(a => new
+//                                   {
+//                                       Id = a.Id,
+//                                       FullName = a.FirstName + " " + a.LastName
+//                                   })
+//                                   .ToList();
+//            var genres = _genreService.GetAllGenres()
+//                                   .Select(g => new
+//                                   {
+//                                       Id = g.Id,
+//                                       Name = g.Name
+//                                   })
+//                                   .ToList();
 
-            ViewBag.AuthorList = new SelectList(authors, "Id", "FullName");
-            ViewBag.GenreList = new SelectList(genres, "Id", "Name");
+//            ViewBag.AuthorList = new SelectList(authors, "Id", "FullName");
+//            ViewBag.GenreList = new SelectList(genres, "Id", "Name");
 
-            return View();
-        }
+//            return View();
+//        }
 
-        [HttpPost]
+//        [HttpPost]
 
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Book book)
-        {
-            if (ModelState.IsValid)
-            {
-                _bookRepository.AddBook(book);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(book);
+//        [ValidateAntiForgeryToken]
+//        public IActionResult Create(Book book)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                _bookRepository.AddBook(book);
+//                return RedirectToAction(nameof(Index));
+//            }
+//            return View(book);
 
-        public IActionResult Create(BookViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                _bookService.AddBook(model);
-                _logger.LogInformation("Book created: {BookTitle}", model.AuthorNames); // Log information
-                return RedirectToAction(nameof(Index));
-            }
-            _logger.LogWarning("Invalid model state for creating book."); // Log warning
-            return View(model);
+//            public IActionResult Create(BookViewModel model)
+//            {
+//                if (ModelState.IsValid)
+//                {
+//                    _bookService.AddBook(model);
+//                    _logger.LogInformation("Book created: {BookTitle}", model.AuthorNames); // Log information
+//                    return RedirectToAction(nameof(Index));
+//                }
+//                _logger.LogWarning("Invalid model state for creating book."); // Log warning
+//                return View(model);
 
-        }
+//            }
 
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
+//            [HttpGet]
+//            public IActionResult Edit(int id)
+//            {
 
-            var book = _bookRepository.GetBookById(id);
-            if (book == null)
-            {
-                return NotFound();
-            }
-            return View(book);
-        }
+//                var book = _bookRepository.GetBookById(id);
+//                if (book == null)
+//                {
+//                    return NotFound();
+//                }
+//                return View(book);
+//            }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Book book)
-        {
-            if (ModelState.IsValid)
-            {
-                if (!_bookRepository.BookExists(book.Id))
-                {
-                    return NotFound();
-                }
-                _bookRepository.UpdateBook(book);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(book);
+//            [HttpPost]
+//            [ValidateAntiForgeryToken]
+//            public IActionResult Edit(int id, Book book)
+//            {
+//                if (ModelState.IsValid)
+//                {
+//                    if (!_bookRepository.BookExists(book.Id))
+//                    {
+//                        return NotFound();
+//                    }
+//                    _bookRepository.UpdateBook(book);
+//                    return RedirectToAction(nameof(Index));
+//                }
+//                return View(book);
 
-            var viewModel = _bookService.GetBookById(id);
-            if (viewModel is null)
-            {
-                _logger.LogWarning("Edit attempted for non-existent book with ID {BookId}.", id);
-                return NotFound();
-            }
+//                var viewModel = _bookService.GetBookById(id);
+//                if (viewModel is null)
+//                {
+//                    _logger.LogWarning("Edit attempted for non-existent book with ID {BookId}.", id);
+//                    return NotFound();
+//                }
 
-            var authors = _authorService.GetAllAuthors()
-                                   .ToList()
-                                   .Select(a => new
-                                   {
-                                       Id = a.Id,
-                                       FullName = a.FirstName + " " + a.LastName
-                                   })
-                                   .ToList();
-            var genres = _genreService.GetAllGenres()
-                                   .Select(g => new
-                                   {
-                                       Id = g.Id,
-                                       Name = g.Name
-                                   })
-                                   .ToList();
+//                var authors = _authorService.GetAllAuthors()
+//                                       .ToList()
+//                                       .Select(a => new
+//                                       {
+//                                           Id = a.Id,
+//                                           FullName = a.FirstName + " " + a.LastName
+//                                       })
+//                                       .ToList();
+//                var genres = _genreService.GetAllGenres()
+//                                       .Select(g => new
+//                                       {
+//                                           Id = g.Id,
+//                                           Name = g.Name
+//                                       })
+//                                       .ToList();
 
-            ViewBag.AuthorList = new SelectList(authors, "Id", "FullName");
-            ViewBag.GenreList = new SelectList(genres, "Id", "Name");
+//                ViewBag.AuthorList = new SelectList(authors, "Id", "FullName");
+//                ViewBag.GenreList = new SelectList(genres, "Id", "Name");
 
-            return View(viewModel);
-        }
+//                return View(viewModel);
+//            }
 
-        [HttpPost]
-        public IActionResult Edit(BookViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                _bookService.UpdateBook(model);
-                _logger.LogInformation("Book updated: {BookId}", model.Id); 
-                return RedirectToAction(nameof(Index));
-            }
-            _logger.LogWarning("Invalid model state for editing book with ID {BookId}.", model.Id);
-            return View(model);
+//            [HttpPost]
+//            public IActionResult Edit(BookViewModel model)
+//            {
+//                if (ModelState.IsValid)
+//                {
+//                    _bookService.UpdateBook(model);
+//                    _logger.LogInformation("Book updated: {BookId}", model.Id);
+//                    return RedirectToAction(nameof(Index));
+//                }
+//                _logger.LogWarning("Invalid model state for editing book with ID {BookId}.", model.Id);
+//                return View(model);
 
-        }
+//            }
 
-        [HttpPost]
-        public IActionResult Delete(int id)
-        {
+//            [HttpPost]
+//            public IActionResult Delete(int id)
+//            {
 
-            if (_bookRepository.BookExists(id))
-            {
-                _bookRepository.DeleteBook(id);
-            }
-            return RedirectToAction(nameof(Index));
-        }
-    }
-}
-
+//                if (_bookRepository.BookExists(id))
+//                {
+//                    _bookRepository.DeleteBook(id);
+//                }
+//                return RedirectToAction(nameof(Index));
+//            }
+//        }
+//    }
+//}
 // OLD
 
 //using AutoMapper;
@@ -322,10 +322,10 @@ namespace ASI.Basecode.WebApp.Controllers
 //    }
 //}
 
-            _bookService.DeleteBook(id);
-            _logger.LogInformation("Book deleted: {BookId}", id);
-            return RedirectToAction(nameof(Index));
-        }
-    }
-}
+//            _bookService.DeleteBook(id);
+//            _logger.LogInformation("Book deleted: {BookId}", id);
+//            return RedirectToAction(nameof(Index));
+//        }
+//    }
+//}
 

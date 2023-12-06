@@ -31,7 +31,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Books</a>
+                        <a href="@Url.Action("List", "Home", new {})" class="nav-link">All Books</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Browse</a>
@@ -49,20 +49,20 @@
     <div class="container mt-4" style="background-color: lightpink; border-radius: 10px;">
         <div class="row row-cols-1 row-cols-md-3 g-4" style="display: flex; flex-wrap: nowrap;">
 
-            @foreach (var book in Model) {
+            @foreach (var book in Model.Take(3)) {
             <!-- Books -->
             <div class="col" style="flex: 0 0 auto;">
-                <a href="@Url.Action("Details", "Home", new { id = book.Id })">
                 <div class="card h-100">
                         <img src="@book.ImageUrl" class="card-img-top" alt="...">
                     <div class="card-body">
-                            <h5 class="card-title">@book.Title</h5>
+                            <h5 class="card-title">@book.Name</h5>
+                                <small class="text-muted">@book.Author</small>
                     </div>
                     <div class="card-footer">
-                            <small class="text-muted">Last updated @book.LastUpdated</small>
+                            <button style="background-color: lightpink; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;" 
+                            onclick="window.location.href = '@Url.Action("Details", "Home", new { id = book.Id })'">View Details</button>
                     </div>
                 </div>
-                </a>
             </div>
             }
         </div>
@@ -92,5 +92,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 

@@ -29,7 +29,7 @@ namespace ASI.Basecode.Services.Services
             _repository.AddReview(review);
         }
 
-        public void DeleteReview(string reviewId)
+        public void DeleteReview(int reviewId)
         {
             _repository.DeleteReview(reviewId);
         }
@@ -44,9 +44,9 @@ namespace ASI.Basecode.Services.Services
             return _repository.GetReviews();
         }
 
-        public Task<Review> GetReviewsById(string reviewId)
+        public Task<Review> GetReviewsById(int reviewId)
         {
-            return _repository.GetReviewsById(reviewId);
+            return _repository.GetReviewById(reviewId);
         }
 
         public void UpdateReview(ReviewViewModel update)

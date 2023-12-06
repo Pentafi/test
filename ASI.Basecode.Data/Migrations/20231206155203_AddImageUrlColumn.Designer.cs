@@ -4,6 +4,7 @@ using ASI.Basecode.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASI.Basecode.Data.Migrations
 {
     [DbContext(typeof(AsiBasecodeDBContext))]
-    partial class AsiBasecodeDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231206155203_AddImageUrlColumn")]
+    partial class AddImageUrlColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +41,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.AuthorBooks", b =>
@@ -61,7 +64,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("AuthorBooks", (string)null);
+                    b.ToTable("AuthorBooks");
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.Book", b =>
@@ -92,7 +95,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.BookGenre", b =>
@@ -115,7 +118,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasIndex("GenreId1");
 
-                    b.ToTable("BookGenre", (string)null);
+                    b.ToTable("BookGenre");
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.Genre", b =>
@@ -131,7 +134,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.RefreshToken", b =>
@@ -156,7 +159,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RefreshToken", (string)null);
+                    b.ToTable("RefreshToken");
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.Review", b =>
@@ -192,7 +195,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasIndex("BookId1");
 
-                    b.ToTable("Review", (string)null);
+                    b.ToTable("Review");
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.User", b =>
@@ -247,7 +250,7 @@ namespace ASI.Basecode.Data.Migrations
                     b.HasIndex(new[] { "UserId" }, "UQ__Users__1788CC4D5F4A160F")
                         .IsUnique();
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

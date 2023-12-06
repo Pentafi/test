@@ -10,10 +10,12 @@ namespace ASI.Basecode.Data.Interfaces
     public interface IReviewRepository
     {
         IQueryable<Review> GetAllReviews();
-        Review GetReviewById(int id);
+        Task<Review> GetReviewById(int id);
         IQueryable<Review> GetReviewsByBook(Book book);
+        IQueryable<Review> GetBookReview(string bookId);
+        IQueryable<Review> GetReviews();
         void AddReview(Review review);
         void UpdateReview(Review update);
-        void DeleteReview(string reviewId);
+        void DeleteReview(int reviewId);
     }
 }
