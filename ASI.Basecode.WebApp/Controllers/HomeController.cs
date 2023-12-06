@@ -53,8 +53,15 @@ namespace ASI.Basecode.WebApp.Controllers
         public IActionResult Index()
         {
             var books = _dbContext.Books.ToList();
+
+            var recommendedBook = _dbContext.Books.FirstOrDefault(b => b.Id == 7);
+
+            ViewBag.RecommendedBook = recommendedBook;
+
             return View(books);
         }
+
+
 
         public IActionResult List()
         {

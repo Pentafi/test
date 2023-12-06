@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\BookDetails.cshtml" />
+    <Content Remove="Views\Home\Recommendation.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

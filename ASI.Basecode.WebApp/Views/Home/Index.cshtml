@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ASI.Basecode.Data.Models.Book>
+﻿@using ASI.Basecode.Data.Models;
+@model IEnumerable<ASI.Basecode.Data.Models.Book>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -44,48 +45,58 @@
             </div>
         </div>
     </nav>
-
-    <!-- Bookshelf -->
     <div class="container mt-4" style="background-color: lightpink; border-radius: 10px;">
-        <div class="row row-cols-1 row-cols-md-3 g-4" style="display: flex; flex-wrap: nowrap;">
+        <h3 style="color:white; padding:12px; text-align: center; position: relative; z-index: 10;">Pokémarked Books</h3>
+        <div style="overflow-x: auto; white-space: nowrap; padding-bottom: 10px;">
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="flex-wrap: nowrap;">
 
-            @foreach (var book in Model.Take(3)) {
-            <!-- Books -->
-            <div class="col" style="flex: 0 0 auto;">
-                <div class="card h-100">
-                        <img src="@book.ImageUrl" class="card-img-top" alt="...">
-                    <div class="card-body">
-                            <h5 class="card-title">@book.Name</h5>
+                @foreach (var book in Model.Take(4))
+                {
+                    <!-- Books -->
+                    <div class="col" style="display: inline-block; width: 50%; vertical-align: top; margin-right: 15px;">
+                        <div class="card h-100">
+                            <img src="@book.ImageUrl" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">@book.Name</h5>
                                 <small class="text-muted">@book.Author</small>
+                            </div>
+                            <div class="card-footer">
+                                <button style=" width: 100%; background-color: lightpink; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;"
+                                        onclick="window.location.href = '@Url.Action("Details", "Home", new { id = book.Id })'">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                            <button style="background-color: lightpink; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;" 
-                            onclick="window.location.href = '@Url.Action("Details", "Home", new { id = book.Id })'">View Details</button>
-                    </div>
-                </div>
+                }
             </div>
-            }
         </div>
     </div>
-    
+
     <!-- Recommendation Section -->
     <div class="container mt-4">
+        <h3 style=" padding-bottom:12px; text-align: center;">This Month's Most Poképular</h3>
         <div class="card mb-3" style="background-color: lightgrey; border-radius: 10px; overflow: hidden;">
             <div class="row g-0">
-                <div class="col-md-4" style="background: url('https://pm1.aminoapps.com/7159/1265b9bc477286d332bafd139477c409c4929ccar1-500-500v2_00.jpg') center; background-size: cover;">
+                <div class="col-md-4" style="padding: 0; overflow: hidden;">
+                    <img src="@ViewBag.RecommendedBook.ImageUrl" class="card-img-top" alt="..." style="width: 100%; height: auto;">
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">One Piece, Volume 1: Romance Dawn (One Piece, #1)</h5>
-                        <p class="card-text"><small class="text-muted">★ ★ ★ ★ ☆</small></p>
-                        <p class="card-text">A new shonen sensation in Japan, this series features Monkey D. Luffy, whose main ambition is to become a pirate. Eating the Gum-Gum Fruit gives him strange powers but also in...</p>
-                        <a href="#" class="btn btn-primary" style=" background-color: pink;">Continue reading</a>
+                    <div class="card-body" style="position: relative;">
+                        <h1 class="card-title">@ViewBag.RecommendedBook.Name</h1>
+                        <p class="card-text"><h5 class="text-muted">★ ★ ★ ★ ☆</h5></p>
+                        <p class="card-text">@ViewBag.RecommendedBook.Description</p>
+                    </div>
+                    <div class="card-footer" style="position: absolute; bottom: 0; width: 100%; text-align: center; padding: 10px 20px;">
+                        <button style="background-color: lightpink; color: white; border: none; padding: 10px 20px; border-radius: 5px; width: 100%; cursor: pointer;"
+                                onclick="window.location.href = '@Url.Action("Details", "Home", new { id = ViewBag.RecommendedBook.Id })'">
+                            Read Book
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 
 
