@@ -13,7 +13,8 @@ namespace ASI.Basecode.Data.Interfaces
         Review GetReviewById(int id);
         IQueryable<Review> GetReviewsByBook(Book book);
         void AddReview(Review review);
-        void UpdateReview(Review update);
-        void DeleteReview(string Id);
+        void UpdateReview(Review review);
+        void DeleteReview(int id);
+        bool ReviewExists(int id);
     }
 }
