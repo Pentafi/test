@@ -1,112 +1,85 @@
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using PogoAdmin.Services;
-using Services.ServiceModels;
+using ASI.Basecode.Data;
+using ASI.Basecode.Data.Interfaces;
 using ASI.Basecode.Data.Models;
-using System;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
     public class BookController : Controller
     {
-        private readonly IMapper _mapper;
-        private readonly IBookService _bookService;
-        private readonly IAuthorService _authorService;
+        private readonly AsiBasecodeDBContext _dbContext;
 
-        public BookController(IMapper mapper, IBookService bookService, IAuthorService authorService)
+        public BookController(AsiBasecodeDBContext dbContext)
         {
-            _mapper = mapper;
-            _bookService = bookService;
-            _authorService = authorService;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
-            var bookViewModels = _bookService.GetAllBooks();
-            return View(bookViewModels);
+            var books = _dbContext.Books.ToList();
+            return View(books);
         }
-
-        public IActionResult Details(int id)
-        {
-            var viewModel = _bookService.GetBookById(id);
-            if (viewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(viewModel);
-        }
-
-
 
         [HttpGet]
         public IActionResult Create()
         {
-            var authors = _authorService.GetAllAuthors()
-                                   .Select(a => new
-                                   {
-                                       ID = a.Id,
-                                       FullName = a.FirstName + " " + a.LastName
-                                   })
-                                   .ToList();
-            ViewBag.AuthorList = new SelectList(authors, "Id", "FullName");
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(BookViewModel model)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Book book)
         {
             if (ModelState.IsValid)
             {
-
-                _bookService.AddBook(model);
-
+                _dbContext.Books.Add(book);
+                _dbContext.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(model);
+            return View(book);
         }
-
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var viewModel = _bookService.GetBookById(id);
-            var authors = _authorService.GetAllAuthors()
-                                   .ToList()
-                                   .Select(a => new
-                                   {
-                                       ID = a.Id,
-                                       FullName = a.FirstName + " " + a.LastName
-                                   })
-                                   .ToList();
-            if (viewModel == null)
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
+            if (book == null)
             {
                 return NotFound();
             }
-            ViewBag.AuthorList = new SelectList(authors, "Id", "FullName");
-
-            return View(viewModel);
+            return View(book);
         }
 
         [HttpPost]
-        public IActionResult Edit(BookViewModel model)
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Book book)
         {
             if (ModelState.IsValid)
             {
-                _bookService.UpdateBook(model);
+                var bookToUpdate = _dbContext.Books.FirstOrDefault(b => b.Id == id);
+                if (bookToUpdate == null)
+                {
+                    return NotFound();
+                }
+                _dbContext.Entry(bookToUpdate).CurrentValues.SetValues(book);
+                _dbContext.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(model);
+            return View(book);
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            _bookService.DeleteBook(id);
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
+            if (book != null)
+            {
+                _dbContext.Books.Remove(book);
+                _dbContext.SaveChanges();
+            }
             return RedirectToAction(nameof(Index));
         }
     }
 }
-

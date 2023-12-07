@@ -57,7 +57,7 @@ namespace ASI.Basecode.WebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Book}/{action=Index}/{id?}");
             });
 
             this.ConfigureRoutes(app);      // Configuration for API controller routing

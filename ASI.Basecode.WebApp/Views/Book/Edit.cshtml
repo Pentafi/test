@@ -1,79 +1,65 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ASI.Basecode.Data.Models.Book
+
 @{
+    ViewData["Title"] = "Edit Book";
 }
 <h1 class="font-weight-bold">EDIT BOOK</h1>
 <div class="container mt-4" style="background-color: lightpink; border-radius: 10px; padding: 20px;">
-    <form id='book-app-form' class='needs-validation' novalidate>
+    <form asp-action="Edit" asp-controller="Book" asp-route-id="@Model.Id" method="post" class='needs-validation' novalidate>
+        <input type="hidden" asp-for="Id" />
+
         <div class='mb-3'>
-            <label for='title' class='form-label'>Title:</label>
-            <input type='text' class='form-control' id='title' name='title' required>
+            <label for='Name' class='form-label'>Title:</label>
+            <input type='text' class='form-control' id='Name' asp-for="Name" required>
             <div class='invalid-feedback'>
                 Please provide a title.
             </div>
         </div>
 
         <div class='mb-3'>
-            <label for='author' class='form-label'>Author:</label>
-            <input type='text' class='form-control' id='author' name='author' required>
+            <label for='Author' class='form-label'>Author:</label>
+            <input type='text' class='form-control' id='Author' asp-for="Author" required>
             <div class='invalid-feedback'>
                 Please provide an author name.
             </div>
         </div>
 
         <div class='mb-3'>
-            <label for='genre' class='form-label'>Genre:</label>
-            <select class='form-select' id='genre' name='genre'>
-                <option value='fiction'>Fiction</option>
-                <option value='non-fiction'>Non-Fiction</option>
-                <option value='fantasy'>Fantasy</option>
-                <option value='mystery'>Mystery</option>
-                <option value='thriller'>Thriller</option>
-                <!-- More genres can be added here -->
-            </select>
-        </div>
-
-        <div class='mb-3'>
-            <label for='description' class='form-label'>Description:</label>
-            <textarea class='form-control' id='description' name='description' required></textarea>
+            <label for='Description' class='form-label'>Description:</label>
+            <textarea class='form-control' id='Description' asp-for="Description" required></textarea>
             <div class='invalid-feedback'>
                 Please provide a description.
             </div>
         </div>
 
         <div class='mb-3'>
-            <label for='published-date' class='form-label'>Published Date:</label>
-            <input type='date' class='form-control' id='published-date' name='published_date' required>
+            <label for='PubDate' class='form-label'>Published Date:</label>
+            <input type='date' class='form-control' id='PubDate' asp-for="PubDate" required>
             <div class='invalid-feedback'>
                 Please provide a valid date.
             </div>
         </div>
 
         <div class='mb-3'>
-            <label for='published-year' class='form-label'>Published Year:</label>
-            <input type='number' class='form-control' id='published-year' name='published_year' min='1000' max='9999' required>
+            <label for='ImageUrl' class='form-label'>Image URL:</label>
+            <input type='text' class='form-control' id='ImageUrl' asp-for="ImageUrl">
             <div class='invalid-feedback'>
-                Please provide a valid year.
+                Please provide a valid image URL.
             </div>
         </div>
 
         <div class="align-content-end">
             <button type='submit' class='btn btn-primary'>Submit</button>
-            <button type='button' class='btn btn-danger' onclick='deleteBook()'>Delete</button>
         </div>
     </form>
 </div>
 
 <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
         'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {

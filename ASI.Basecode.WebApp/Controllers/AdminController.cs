@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
     public class AdminController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
