@@ -1,4 +1,4 @@
-﻿using ASI.Basecode.Data.Models;
+using ASI.Basecode.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,8 @@ namespace ASI.Basecode.Data.Interfaces
         IQueryable<Review> GetBookReview(string bookId);
         IQueryable<Review> GetReviews();
         void AddReview(Review review);
-        void UpdateReview(Review update);
-        void DeleteReview(int reviewId);
+        void UpdateReview(Review review);
+        void DeleteReview(int id);
+        bool ReviewExists(int id);
     }
 }
