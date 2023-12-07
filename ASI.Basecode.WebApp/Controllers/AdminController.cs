@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization; 
 
 namespace ASI.Basecode.WebApp.Controllers
-{ 
+{
     [Authorize(Roles = "SuperAdmin")]
     public class AdminController : Controller
     {

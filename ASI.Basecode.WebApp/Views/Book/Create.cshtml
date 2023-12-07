@@ -9,15 +9,15 @@
     <form id='book-create-form' asp-controller="Book" asp-action="Create" method="post">
         <div class='mb-3'>
             <label for='title' class='form-label'>Title:</label>
-            <input type='text' class='form-control' id='title' name='title' required>
+            <input type='text' class='form-control' id='title' name='Name' required>
         </div>
 
         <div class='mb-3'>
             <label for='author' class='form-label'>Author:</label>
-            <input type='text' class='form-control' id='author' name='author' required>
+            <input type='text' class='form-control' id='author' name='Author' required>
         </div>
 
-        <div class='mb-3'>
+        @* <div class='mb-3'>
             <label for='genre' class='form-label'>Genre:</label>
             <select class='form-select' id='genre' name='genre'>
                 <option value='fiction'>Fiction</option>
@@ -27,26 +27,22 @@
                 <option value='thriller'>Thriller</option>
                 <!-- More genres can be added here -->
             </select>
-        </div>
+        </div> *@
 
         <div class='mb-3'>
             <label for='description' class='form-label'>Description:</label>
-            <textarea class='form-control' id='description' name='description' required></textarea>
+            <textarea class='form-control' id='description' name='Description' required></textarea>
         </div>
 
         <div class='mb-3'>
             <label for='published-date' class='form-label'>Published Date:</label>
-            <input type='date' class='form-control' id='published-date' name='published_date' required>
+            <input type='date' class='form-control' id='published-date' name='PubDate' required>
         </div>
         <div class='mb-3'>
             <label for='imageUrl' class='form-label'>Image URL:</label>
             <input type='text' class='form-control' id='imageUrl' name='ImageUrl' required placeholder="Enter image URL">
         </div>
 
-       @*  <div class='mb-3'>
-            <label for='published-year' class='form-label'>Published Year:</label>
-            <input type='number' class='form-control' id='published-year' name='published_year' min='1000' max='9999' required>
-        </div> *@
 
         <button type='submit' class='btn btn-primary'>Create Book</button>
     </form>

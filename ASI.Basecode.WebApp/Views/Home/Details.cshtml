@@ -1,7 +1,7 @@
 ﻿@model ASI.Basecode.Data.Models.Book
 
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = Model.Name;
 }
 
 <div class="container mt-4" style="background: #ffcccb; padding: 20px; border-radius: 10px;">
@@ -17,7 +17,7 @@
 
         <!-- Right Column for Book Name, Author, and Description -->
         <div class="col-md-6">
-            <h2>@Model.Title</h2>
+            <h2>@Model.Name</h2>
             <p>Author: <strong>@Model.Author</strong></p>
             <p style="color: #555;">@Model.Description</p>
             <!-- Implement "Show more" functionality if needed -->

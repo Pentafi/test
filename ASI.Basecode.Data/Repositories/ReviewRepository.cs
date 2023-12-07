@@ -65,6 +65,12 @@ namespace ASI.Basecode.Data.Repositories
         {
             return GetDbSet<Review>().Any(x => x.Id == id);
         }
+
+        //just added to avoid error(to be changed later)
+        Task<Review> IReviewRepository.GetReviewById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

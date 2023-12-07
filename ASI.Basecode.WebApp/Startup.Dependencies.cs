@@ -32,6 +32,7 @@ namespace ASI.Basecode.WebApp
             // Services
             services.AddSingleton<TokenValidationParametersFactory>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthorService, AuthorService>();
             services.AddScoped<IBookService, BookService>();
             /* services.AddScoped<IReviewService, ReviewService>(); kailangan og reviewservices sa services folder diri - justinwapo */
             services.AddScoped<IGenreService, GenreService>();
@@ -39,7 +40,7 @@ namespace ASI.Basecode.WebApp
             // Repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
-
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
 
