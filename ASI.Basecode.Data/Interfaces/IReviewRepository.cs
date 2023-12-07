@@ -14,6 +14,6 @@ namespace ASI.Basecode.Data.Interfaces
         IQueryable<Review> GetReviewsByBook(Book book);
         void AddReview(Review review);
         void UpdateReview(Review update);
-        void DeleteReview(string reviewId);
+        void DeleteReview(string Id);
     }
 }

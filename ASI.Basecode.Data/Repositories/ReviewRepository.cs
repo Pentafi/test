@@ -14,15 +14,13 @@ namespace ASI.Basecode.Data.Repositories
         {
         }
 
-        public IQueryable<Review> GetReviews()
+        public IQueryable<Review> GetAllReviews()
         {
             return GetDbSet<Review>();
         }
-        public Task<Review> GetReviewsById(string reviewId)
+        public Review GetReviewById(int id)
         {
-            var review = this.GetDbSet<Review>().Where(r => r.reviewId == reviewId).SingleOrDefaultAsync();
-
-            return review;
+            return GetDbSet<Review>().Find(id);
         }
 
         public IQueryable<Review> GetReviewsByBook(Book book)
@@ -40,18 +38,16 @@ namespace ASI.Basecode.Data.Repositories
         public void DeleteReview(int id)
         {
             var review = GetDbSet<Review>().Find(id);
-
             if (review != null)
             {
                 GetDbSet<Review>().Remove(review);
                 UnitOfWork.SaveChanges();
             }
-
         }
 
         public void UpdateReview(Review review)
         {
-            GetDbSet<Review>().Update(review);
+            this.SetEntityState(review, EntityState.Modified);
             UnitOfWork.SaveChanges();
         }
         public bool ReviewExists(int id)
