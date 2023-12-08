@@ -9,9 +9,9 @@ namespace ASI.Basecode.Data.Models
 {
     public partial class Review
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public int reviewId { get; set; }
+        public string reviewerName { get; set; }
+        public string reviewerEmail { get; set; }
         public string content { get; set; }
         public int Rating { get; set; }
         public string BookId { get; set; }
