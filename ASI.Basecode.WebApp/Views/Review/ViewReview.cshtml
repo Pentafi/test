@@ -19,7 +19,7 @@
                             {
                                 <div class="user-review">
                                     <div class="reviewer-header">
-                                        <span class="reviewer-name">@c.reviewerName<i class="review-date">• @c.dateReviewed</i></span>
+                                        <span class="reviewer-name">@c.Name<i class="review-date">• @c.dateReviewed</i></span>
                                         <div>
                                             @for (var i = 1; i <= c.Rating; i++)
                                             {
@@ -32,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="reviewer-email">
-                                        @c.reviewerEmail
+                                        @c.Email
                                     </div>
 
                                     <div class="review-info">
