@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ASI.Basecode.Data.Models;
 
 namespace ASI.Basecode.Services.ServiceModels
 {
@@ -24,5 +25,13 @@ namespace ASI.Basecode.Services.ServiceModels
         [Required(ErrorMessage = "Confirmation Password is required.")]
         [Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
         public string ConfirmPassword { get; set; }
+
+         public List<string> Roles { get; set; }
+        public List<User> Users { get; set; }
+
+        [Required(ErrorMessage = "Please select a role.")]
+		public string[] SelectedRoles { get; set; }
+
+		public string OriginalEmail { get; set; }
     }
 }
