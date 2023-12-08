@@ -1,10 +1,4 @@
-
-﻿using System;
-﻿using ASI.Basecode.Data.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace ASI.Basecode.Data.Models
 {
     public partial class Review

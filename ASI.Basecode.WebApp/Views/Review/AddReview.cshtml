@@ -10,42 +10,37 @@
             </div>
             <form method="post" asp-action="AddReview" asp-controller="Review" id="ReviewForm" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <input type="hidden" name="bookId" asp-for="bookId"/>
-                    <input type="hidden" asp-for="reviewId" value="0" />
+                    <input type="hidden" name="bookId" asp-for="BookId"/>
+                    <input type="hidden" asp-for="Id" value="0" />
                     <div>
-                        <label class="input-label" asp-for="reviewerFirstName">First Name</label>
-                        <input type="text" asp-for="reviewerFirstName" class="form-control" placeholder="First Name..." />
-                        <span asp-validation-for="reviewerFirstName" class="text-danger"></span>
+                        <label class="input-label" asp-for="Name">Name</label>
+                        <input type="text" asp-for="Name" class="form-control" placeholder="Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div>
-                        <label class="input-label" asp-for="reviewerLastName"> Last Name</label>
-                        <input type="text" asp-for="reviewerLastName" class="form-control" placeholder="Last Name..." />
-                        <span asp-validation-for="reviewerLastName" class="text-danger"></span>
-                    </div>
-                    <div>
-                        <label class="input-label" asp-for="reviewerEmail">Email Address</label>
-                        <input type="email" asp-for="reviewerEmail" class="form-control" placeholder="Email Address..." />
-                        <span asp-validation-for="reviewerEmail" class="text-danger"></span>
+                        <label class="input-label" asp-for="Email">Email Address</label>
+                        <input type="email" asp-for="Email" class="form-control" placeholder="Email Address" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="rating-input">
-                        <label class="input-label" asp-for="rating"></label>
-                        <input type="number" asp-for="rating" class="form-control" placeholder="rating" />
-                        <span asp-validation-for="rating" class="text-danger"></span>
+                        <label class="input-label" asp-for="Rating"></label>
+                        <input type="number" asp-for="Rating" class="form-control" placeholder="Rating" />
+                        <span asp-validation-for="Rating" class="text-danger"></span>
 
                     </div>
                     <div class="rating-stars">
-                        <label class="input-label" asp-for="rating">Rating:</label>
+                        <label class="input-label" asp-for="Rating">Rating:</label>
                         <i class="star far fa-star" data-value="1"></i>
                         <i class="star far fa-star" data-value="2"></i>
                         <i class="star far fa-star" data-value="3"></i>
                         <i class="star far fa-star" data-value="4"></i>
                         <i class="star far fa-star" data-value="5"></i>
-                        <span asp-validation-for="rating" class="text-danger"></span>
+                        <span asp-validation-for="Rating" class="text-danger"></span>
                     </div>
                     <div>
-                        <label class="input-label" asp-for="content">Review Comment</label>
-                        <input type="text" asp-for="content" class="form-control" placeholder="Review..." />
-                        <span asp-validation-for="content" class="text-danger"></span>
+                        <label class="input-label" asp-for="Content">Review Comment</label>
+                        <input type="text" asp-for="Content" class="form-control" placeholder="Review..." />
+                        <span asp-validation-for="Content" class="text-danger"></span>
                     </div> 
                 </div>
                 <div class="modal-footer">
@@ -58,6 +53,3 @@
         </div>
     </div>
 </div>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="~/js/Review.js"></script>

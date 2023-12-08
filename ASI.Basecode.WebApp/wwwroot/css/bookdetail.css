@@ -1,0 +1,602 @@
+body {
+  background-color: #ffffff;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  left: 0;
+}
+
+/* Navbar */
+.navbar {
+  height: 60px;
+  background-color: #e3e3e3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  padding-right: 100px;
+  justify-content: space-between;
+}
+
+.navbar h1 {
+  color: #000000;
+  padding: 10px;
+}
+
+.bibliobibuli-logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.navbar-right ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+
+.navbar-right ul li a {
+  text-decoration: none;
+  transition: background-color 0.3s;
+  color: #000000;
+  padding: 20px;
+}
+
+.navbar-right ul li a:hover {
+  background: linear-gradient(to top, transparent 90%, #176b87);
+}
+
+.dp {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    padding-left: 200px;
+  }
+}
+
+.body-two-section {
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  background-color: white;
+}
+
+/* Content */
+.content {
+  position: relative;
+  top: 30px;
+  padding: 20px 40px 40px 40px;
+  width: 100%;
+  margin: auto;
+}
+
+.content h1 {
+  display: flex;
+  align-items: center;
+  color: #000000;
+  font-weight: bold;
+}
+
+.book-details {
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.book-image {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-detail-image {
+  max-width: 350px;
+  padding: 0 10px;
+  border-radius: 20px;
+}
+
+.book-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  padding: 10px 10px 5px 10px;
+  color: #ffac33;
+}
+
+.book-reviews {
+  font-size: 18px;
+  font-style: italic;
+  color: #555;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-info {
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-title {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 20px 0 5px 0;
+}
+
+.book-author {
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+  color: #176b87;
+  font-style: italic;
+}
+
+.book-author-title {
+  margin-bottom: 0 !important;
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+
+.book-genres {
+  display: flex;
+}
+
+.book-genre {
+  font-size: 16px;
+  color: white;
+  background-color: #176b87;
+  font-weight: bold;
+  padding: 3px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  border-radius: 20px;
+}
+
+.book-synopsis {
+  font-size: 18px;
+  min-height: 150px;
+}
+
+.book-other-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-darkblue {
+  font-size: 18px;
+  color: white;
+  background-color: #176b87;
+  font-weight: 400;
+  padding: 3px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.book-lightblue {
+  font-size: 18px;
+  color: black;
+  background-color: #64ccc5;
+  font-weight: 400;
+  padding: 3px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+/*Fourth background*/
+.contact-image-background-container {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-info-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*Fifth background*/
+.fifth-white-background {
+  background-color: #053b50;
+  background-image: url("/img/lines 3.png");
+  background-size: cover;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.footer-first-col {
+  width: 60%;
+  padding-left: 50px;
+}
+
+.text-line p {
+  color: #ffffff;
+  padding-left: 50px;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.contact-info {
+  padding: 60px 0 30px 0;
+}
+
+.contact-info i {
+  font-size: 20px;
+}
+
+.contact-info p {
+  font-size: 15px;
+}
+
+.quick-links {
+  width: 40%;
+  padding-top: 20px;
+}
+
+.text-quick-links {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.second-nav-links {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.second-nav-links a {
+  text-decoration: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+/* Logo and Title */
+.logo-title {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 120px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.logo-title h1 {
+  padding-top: 30px;
+  font-size: 64px;
+  color: #ffffff;
+}
+
+.commentBox {
+  background-color: #efefef;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.review-details-row {
+  display: flex;
+}
+
+.review-summary {
+  position: sticky;
+  top: 100px;
+  bottom: 100px;
+  flex: 0 0 28%;
+  padding: 20px 10px 5px 10px;
+  margin: 0 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.review-summary-1 {
+  background-color: #176b87;
+  border-radius: 10px;
+  padding: 20px 20px 5px 20px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.summary-details {
+  flex: 1;
+}
+
+.summary-text {
+  margin: 5px;
+  color: white;
+}
+
+.summary-detail-texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.average-rating-num {
+  margin: 0;
+  font-size: 60px;
+  font-weight: 500;
+}
+
+.starFadeN {
+  background-image: url("/img/starEmpty.png");
+  background-size: contain;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+.starGlowN {
+  background-image: url("/img/starFilled.png");
+  background-size: contain;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+
+.score-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.rating-number {
+  min-width: 20px;
+  display: flex;
+  color: white;
+}
+
+.ratings-graph {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  width: 100%;
+  height: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rating-bar-fill {
+  background-color: #f39c12;
+  height: 20px;
+  transition: width 0.3s ease-in-out;
+}
+
+.review-contents {
+  flex: 1;
+  padding: 0 20px 20px 20px;
+}
+
+.review-content-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-header {
+  display: flex;
+}
+
+.button-text {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+.review-label {
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #176b87;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  max-height: 30px;
+  min-width: 30px;
+  cursor: pointer;
+  outline: none;
+  transition: ease 0.2s;
+}
+
+.add-button:hover {
+  background-color: #0d5066;
+  transition: ease 0.2s;
+  border: none;
+  outline: none;
+}
+
+.user-review {
+  background-color: #f1f1f1;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.user-review-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 30px;
+}
+
+.reviewer-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewer-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.review-date {
+  font-size: 16px;
+  font-style: italic;
+  margin-left: 20px;
+  color: darkgrey;
+}
+
+.reviewer-email {
+  color: #64ccc5;
+  padding-bottom: 20px;
+}
+
+.review-info {
+  font-size: 18px;
+}
+
+.modal-body {
+  padding: 0 20px 30px 20px;
+}
+
+.modal-button {
+  background-color: #176b87;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding: 0 20px;
+  cursor: pointer;
+  outline: none;
+  transition: ease 0.2s;
+}
+
+.modal-button:hover {
+  background-color: #0d5066;
+  transition: ease 0.2s;
+  border: none;
+  outline: none;
+}
+
+.modal-button-close {
+  background-color: #bfbfbf;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding: 0 20px;
+  cursor: pointer;
+  outline: none;
+  transition: ease 0.2s;
+}
+
+.modal-button-close:hover {
+  background-color: #808080;
+  transition: ease 0.2s;
+  border: none;
+  outline: none;
+}
+
+.input-label {
+  padding-top: 20px;
+}
+
+.modal.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show .modal-dialog {
+  min-width: 500px;
+}
+
+.edit-button {
+  background-color: #176b87;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding: 0 20px;
+  cursor: pointer;
+  outline: none;
+  transition: ease 0.2s;
+}
+
+.edit-button:hover {
+  background-color: #0d5066;
+  transition: ease 0.2s;
+  border: none;
+  outline: none;
+}
+
+.delete-button {
+  background-color: #176b87;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding: 0 20px;
+  cursor: pointer;
+  outline: none;
+  transition: ease 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #0d5066;
+  transition: ease 0.2s;
+  border: none;
+  outline: none;
+}
+
+.delete-modal-caption {
+  padding: 20px 10px 0 10px;
+  font-weight: 600;
+}
+
+.rating-input {
+  display: none;
+}
+
+.star {
+  font-size: 20px;
+  padding-left: 5px;
+  color: #ffc107;
+}
