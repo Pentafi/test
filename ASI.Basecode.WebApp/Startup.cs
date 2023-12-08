@@ -1,6 +1,7 @@
 using ASI.Basecode.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,6 +30,9 @@ namespace ASI.Basecode.WebApp
 
             // Add services to the container.
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+    //        services.AddIdentity<IdentityUser, IdentityRole>()
+    //.AddEntityFrameworkStores<AsiBasecodeDBContext>()
+    //.AddDefaultTokenProviders();
 
         }
 
@@ -57,7 +61,7 @@ namespace ASI.Basecode.WebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Book}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
 
             this.ConfigureRoutes(app);      // Configuration for API controller routing

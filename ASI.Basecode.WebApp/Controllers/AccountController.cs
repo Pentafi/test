@@ -1,11 +1,9 @@
-﻿using ASI.Basecode.Data.Models;
 using ASI.Basecode.Data.ViewModels;
 using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.Manager;
 using ASI.Basecode.Services.ServiceModels;
 using ASI.Basecode.WebApp.Authentication;
 using ASI.Basecode.WebApp.Models;
-using ASI.Basecode.WebApp.Mvc;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -20,12 +18,11 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using static ASI.Basecode.Resources.Constants.Enums;
+using ASI.Basecode.Data.Models;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
-    [Authorize(Roles = "Superadmin")]
+
     public class AccountController : Controller
     {
 
@@ -188,255 +185,212 @@ namespace ASI.Basecode.WebApp.Controllers
         /// Login Method
         /// </summary>
         /// <returns>Created response view</returns>
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public async Task<ActionResult> Login(string returnUrl = null)
+        //{
+        //    _logger.LogInformation("hello from account controller");
+        //    if (!string.IsNullOrEmpty(ErrorMessage))
+        //    {
+        //        ModelState.AddModelError(string.Empty, ErrorMessage);
+        //    }
 
+        //    returnUrl ??= Url.Content("~/");
+
+        //    // Clear the existing external cookie to ensure a clean login process
+        //    await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+        //    ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+        //    ReturnUrl = returnUrl;
+
+        //    /*TempData["returnUrl"] = System.Net.WebUtility.UrlDecode(HttpContext.Request.Query["ReturnUrl"]);
+        //    this._sessionManager.Clear();
+        //    this._session.SetString("SessionId", System.Guid.NewGuid().ToString());*/
+        //    return View();
+        //}
+
+        ///// <summary>
+        ///// Authenticate user and signs the user in when successful.
+        ///// </summary>
+        ///// <param name="model">The model.</param>
+        ///// <param name="returnUrl">The return URL.</param>
+        ///// <returns> Created response view </returns>
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        //{
+        //    returnUrl ??= Url.Content("~/");
+
+        //    ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        // Fetch the user by email (or username, if that's what you use for login)
+        //        var user = await _userManager.FindByNameAsync(model.Email);
+        //        if (user == null)
+        //        {
+        //            _logger.LogWarning("Login failed: User does not exist.");
+        //            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+        //            return View(model);
+        //        }
+
+        //        // This doesn't count login failures towards account lockout
+        //        // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+        //        var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+        //        if (result.Succeeded)
+        //        {
+        //            _logger.LogInformation(Input.Email);
+
+        //            //Console.WriteLine("Login success");f
+        //            //_logger.LogInformation("User logged in.");
+
+        //            //_logger.LogInformation($"User logged in: {user.UserName}");
+
+        //            var roles = await _userManager.GetRolesAsync(user);
+        //            _logger.LogInformation($"User Roles: {string.Join(", ", roles)}");
+
+        //            if (roles.Contains("Admin"))
+        //            {
+        //                return RedirectToAction("Index", "Book"); // pls change this 
+        //            }
+        //            else if (roles.Contains("SuperAdmin"))
+        //            {
+        //                return RedirectToAction("Index", "Book"); // pls change this
+        //            }
+        //        }
+        //        if (result.RequiresTwoFactor)
+        //        {
+        //            _logger.LogInformation("User logged in.2");
+        //            return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+        //        }
+        //        if (result.IsLockedOut)
+        //        {
+        //            _logger.LogInformation("User logged in.3");
+        //            //_logger.LogWarning("User account locked out.");
+        //            return RedirectToPage("./Lockout");
+        //        }
+        //        else if (result.IsNotAllowed)
+        //        {
+        //            _logger.LogInformation("User logged in.4");
+        //            Console.WriteLine("Login failed: User is not allowed to login.");
+        //        }
+        //        else
+        //        {
+        //            _logger.LogWarning($"Login failed. Succeeded: {result.Succeeded}, " +
+        //               $"IsLockedOut: {result.IsLockedOut}, " +
+        //               $"RequiresTwoFactor: {result.RequiresTwoFactor}, " +
+        //               $"IsNotAllowed: {result.IsNotAllowed}");
+        //            //var user = await _userManager.FindByEmailAsync(model.Email);
+        //            //if (user == null)
+        //            //{
+        //            //    _logger.LogInformation("Login failed: User does not exist.");
+        //            //    // Handle non-existent user scenario
+        //            //}
+        //            //if (!await _userManager.IsEmailConfirmedAsync(user))
+        //            //{
+        //            //    _logger.LogWarning("Login failed: Email not confirmed.");
+        //            //    // Handle unconfirmed email scenario
+        //            //}
+        //            _logger.LogInformation("User logged in.5");
+        //            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+        //            return RedirectToPage(returnUrl);
+        //        }
+        //    }
+
+        //    // If we got this far, something failed, redisplay form
+        //    return RedirectToPage(returnUrl);
+
+        //    /*this._session.SetString("HasSession", "Exist");
+
+        //    User user = null;
+        //    var loginResult = _userService.AuthenticateUser(model.UserId, model.Password, ref user);
+        //    if (loginResult == LoginResult.Success)
+        //    {
+        //        // 認証OK
+        //       // await this._signInManager.SignInAsync(user);
+        //        this._session.SetString("UserName", user.Name);
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    else
+        //    {
+        //        // 認証NG
+        //        TempData["ErrorMessage"] = "Incorrect UserId or Password";
+        //        return View();
+        //    }
+        //    return View();*/
+        //}
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult> Login(string returnUrl = null)
+        public IActionResult Login(string returnUrl = null)
         {
-            if (!string.IsNullOrEmpty(ErrorMessage))
-            {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
-            }
-
-            returnUrl ??= Url.Content("~/");
-
-            // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
-            ReturnUrl = returnUrl;
-
-            /*TempData["returnUrl"] = System.Net.WebUtility.UrlDecode(HttpContext.Request.Query["ReturnUrl"]);
-            this._sessionManager.Clear();
-            this._session.SetString("SessionId", System.Guid.NewGuid().ToString());*/
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
-        /// <summary>
-        /// Authenticate user and signs the user in when successful.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <param name="returnUrl">The return URL.</param>
-        /// <returns> Created response view </returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
-
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ViewData["ReturnUrl"] = returnUrl;
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user != null)
+                IdentityUser user = null;
+                if (!string.IsNullOrWhiteSpace(model.Email))
                 {
-                    var roles = await _userManager.GetRolesAsync(user);
-                    if (result.Succeeded)
-                    {
-                        _logger.LogInformation("User logged in.");
-                        if (roles.Contains("Superadmin"))
-                            return RedirectToAction("UserList", "Account");
-                        if (roles.Contains("Bookmaster"))
-                            return RedirectToAction("BooksDashboard", "Book");
-                        if (roles.Contains("Genremaster"))
-                            return RedirectToAction("GenreList", "Genre");
-                    }
-                    if (result.RequiresTwoFactor)
-                    {
-                        return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                    }
-                    if (result.IsLockedOut)
-                    {
-                        //_logger.LogWarning("User account locked out.");
-                        return RedirectToPage("./Lockout");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                        foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                        {
-                            _logger.LogInformation(error.ErrorMessage);
-                        }
-                        return RedirectToPage(returnUrl);
-                    }
+                    user = await _userManager.FindByEmailAsync(model.Email);
+                }
+                if (user == null && !string.IsNullOrWhiteSpace(model.UserId))
+                {
+                    user = await _userManager.FindByNameAsync(model.UserId);
                 }
 
-                if (!ModelState.IsValid)
+                if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                    {
-                        _logger.LogInformation(error.ErrorMessage);
-                    }
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User logged in.");
+                    return LocalRedirect(returnUrl ?? Url.Content("/Book/Index"));
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return View(model);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
-            return RedirectToPage(returnUrl);
-
-            /*this._session.SetString("HasSession", "Exist");
-
-            User user = null;
-            var loginResult = _userService.AuthenticateUser(model.UserId, model.Password, ref user);
-            if (loginResult == LoginResult.Success)
-            {
-                // 認証OK
-               // await this._signInManager.SignInAsync(user);
-                this._session.SetString("UserName", user.Name);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                // 認証NG
-                TempData["ErrorMessage"] = "Incorrect UserId or Password";
-                return View();
-            }
-            return View();*/
+            return View(model);
         }
+
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
         {
-            var roles = _userService.GetRoles().Select(r => r.Name).ToList();
-            var userViewModel = new UserViewModel
-            {
-                Roles = roles
-            };
-            return View(userViewModel);
-        }
-
-        [HttpGet]
-		public async Task<IActionResult> UserList()
-        {
-            var roles = _userService.GetRoles().Select(r => r.Name).ToList();
-            var users = _userService.GetUsers().ToList();
-            var userList = new List<RoleViewModel>();
-            foreach(var user in users)
-            {
-                var identityUser = await _userManager.FindByEmailAsync(user.Email);
-                var identityRoles = await _userManager.GetRolesAsync(identityUser);
-                var viewModel = new RoleViewModel
-                {
-                    User = user,
-                    UserRoles = identityRoles.ToList(),
-                };
-
-                userList.Add(viewModel);
-            }
-			var userViewModel = new UserViewModel
-            {
-                Roles = roles,
-                Users = users
-            };
-
-            var commonViewModel = new UserViewRoleModel
-            {
-                ViewModel = userViewModel,
-                IdentityUsers = userList
-            };
-
-            return View("Views/Account/UserList.cshtml", commonViewModel);
-		}
-
-        [HttpPost]
-        public IActionResult UpdateUser(UserViewModel model)
-        {
-            _userService.UpdateUser(model);
-                
-            return RedirectToAction("UserList", "Account");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddUser(UserViewModel model)
-        {
-            _logger.LogInformation("register user");
-            try
-			{
-				var identityUser = new IdentityUser
-				{
-					Email = model.Email,
-					UserName = model.UserId
-				};
-
-				var result = await _userManager.CreateAsync(identityUser, model.Password);
-
-				if (result.Succeeded)
-				{
-					_userService.AddUser(model);
-
-					foreach (var selectedRole in model.SelectedRoles)
-					{
-						var userRole = _roleManager.FindByNameAsync(selectedRole).Result;
-
-						if (userRole != null)
-						{
-							await _userManager.AddToRoleAsync(identityUser, userRole.Name);
-						}
-					}
-				}
-
-				return RedirectToAction("UserList", "Account");
-			}
-            catch (InvalidDataException ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-            }
-            catch (System.Exception ex)
-            {
-                TempData["ErrorMessage"] = Resources.Messages.Errors.ServerError;
-            }
             return View();
         }
 
-        [HttpPost]
-        public IActionResult DeleteUser(UserViewModel model)
-        {
-            _userService.DeleteUser(model.UserId);
-            return RedirectToAction("UserList", "Account");
-        }
-        
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register(UserViewModel model)
         {
             try
             {
-                var identityUser = new IdentityUser();
-                identityUser.Email = model.Email;
-                identityUser.UserName = model.UserId;
-                identityUser.UserName = model.UserId;
-                var result = await _userManager.CreateAsync(identityUser, model.Password);
+                _userService.AddUser(model);
 
-                if (result.Succeeded)
-                {
-                    _userService.AddUser(model);
-
-                    var userRole = _roleManager.FindByNameAsync("User").Result;
-
-                    if (userRole != null)
-                    {
-                        await _userManager.AddToRoleAsync(identityUser, userRole.Name);
-                    }
-                }
-
-
-                return RedirectToAction("Login", "Account");
-            }
-            catch (InvalidDataException ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("Login", "Account");
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = Resources.Messages.Errors.ServerError;
+                _logger.LogError(ex, "Error occurred during registration");
+
+                ModelState.AddModelError(string.Empty, "An error occurred during registration.");
+                return View(model);
             }
-            return View();
         }
+
 
         public IActionResult CreateRole()
         {

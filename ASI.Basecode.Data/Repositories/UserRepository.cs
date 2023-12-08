@@ -13,15 +13,19 @@ namespace ASI.Basecode.Data.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
+        private readonly AsiBasecodeDBContext _context;
+
         private UserManager<IdentityUser> _userManager;
         private RoleManager<IdentityRole> _roleManager;
 
         public UserRepository(IUnitOfWork unitOfWork,
             UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager) : base(unitOfWork) 
+            RoleManager<IdentityRole> roleManager,
+            AsiBasecodeDBContext context) : base(unitOfWork)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _context = context;
         }
 
         public IQueryable<User> GetUsers()
@@ -31,13 +35,13 @@ namespace ASI.Basecode.Data.Repositories
 
         public bool UserExists(string userId)
         {
-            return this.GetDbSet<User>().Any(x => x.UserId == userId);
+            return _context.Users.Any(u => u.Id == userId);
         }
 
         public void AddUser(User user)
         {
-            this.GetDbSet<User>().Add(user);
-            UnitOfWork.SaveChanges();
+            _context.User.Add(user);
+            _context.SaveChanges();
         }
         public IdentityUser FindUser(string userName)
         {

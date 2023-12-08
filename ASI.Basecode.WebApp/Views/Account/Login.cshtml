@@ -18,7 +18,8 @@
           class="img-fluid" alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form>
+          <form asp-controller="Account" asp-action="Login" method="post">
+          @Html.AntiForgeryToken()
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
             <p class="lead fw-normal mb-0 me-3">Sign in with</p>
             <button type="button" class="btn btn-primary btn-floating mx-1">
@@ -37,19 +38,21 @@
             <p class="text-center fw-bold mx-3 mb-0">Or</p>
           </div>
 
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form2Example11">@UserId</label>
-            <input type="text" id="form2Example11" class="form-control form-control-lg"
-              asp-for="Email" placeholder="Enter a valid email address" />
-          </div>
+                    <!-- Email/User ID input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="emailOrUserId">Email or User ID</label>
+                        <input type="text" id="emailOrUserId" class="form-control form-control-lg"
+                               asp-for="Email" placeholder="Enter email or user ID" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
 
-          <!-- Password input -->
-          <label class="form-label" for="form2Example22">@Password</label>
-          <div class="form-outline mb-3">
-            <input type="password" id="form2Example22" class="form-control form-control-lg"
-              asp-for="Password" placeholder="Enter password" />
-          </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-control form-control-lg"
+                               asp-for="Password" placeholder="Enter password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
 
           <div class="d-flex justify-content-between align-items-center">
             <!-- Checkbox -->
@@ -64,8 +67,8 @@
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" class="btn btn-primary btn-lg btn-login-custom"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-login-custom"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
               <a asp-controller="Account" asp-action="Register" class="link-danger">@CreateNew</a></p>
           </div>

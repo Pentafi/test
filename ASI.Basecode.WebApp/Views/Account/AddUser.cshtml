@@ -18,12 +18,12 @@
 						<span asp-validation-for="UserId" class="text-danger"></span>
 
 					</div>
-					<div>
+					@* <div>
 						<label class="form-label" for="email">Email</label>
 						<input type="text" id="email" class="form-control"
 							   asp-for="Email" placeholder="Enter Email" />
 						<span asp-validation-for="Email" class="text-danger"></span>
-					</div>
+					</div> *@
 					<div>
 						<label class="form-label" for="name">Name</label>
 						<input type="text" id="name" class="form-control"
@@ -42,7 +42,7 @@
 							   asp-for="ConfirmPassword" placeholder="Confirm Password" />
 						<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 					</div>
-					<div>
+					@* <div>
 						<label asp-for="SelectedRoles" class="control-label">Role</label>
 						@foreach (var role in Model.Roles)
 						{
@@ -55,7 +55,7 @@
 							}
 						}
 						<span asp-validation-for="SelectedRoles" class="text-danger"></span>
-					</div>
+					</div> *@
 				</div>
 				<div class="modal-footer">
 					<button class="modal-button-close" id="Close" type="button" data-dismiss="modal">Close</button>

@@ -14,14 +14,11 @@ namespace ASI.Basecode.Data.Models
         public string Description { get; set; }
         public DateTime PubDate { get; set; }
 
-        //public byte[] image { get; set; } = null;
 
         // Many-to-Many relationship 
         public virtual ICollection<AuthorBooks> AuthorBooks { get; set; } = new List<AuthorBooks>();
         public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
         public string Author { get; set; }
-        //public string Title { get; set; }
         public string ImageUrl { get; set; }
-        //public string LastUpdated { get; set; }
     }
 }

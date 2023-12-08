@@ -17,6 +17,7 @@ namespace ASI.Basecode.Data
         {
             EnsureDatabaseSeeded();
         }
+
         private void EnsureDatabaseSeeded()
         {
             var seeder = new DataSeeder(this);

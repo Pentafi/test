@@ -38,7 +38,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.AuthorBooks", b =>
@@ -61,7 +61,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("AuthorBooks");
+                    b.ToTable("AuthorBooks", (string)null);
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.Book", b =>
@@ -89,7 +89,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.BookGenre", b =>
@@ -112,7 +112,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasIndex("GenreId1");
 
-                    b.ToTable("BookGenre");
+                    b.ToTable("BookGenre", (string)null);
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.Genre", b =>
@@ -128,7 +128,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.RefreshToken", b =>
@@ -153,7 +153,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RefreshToken");
+                    b.ToTable("RefreshToken", (string)null);
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.Review", b =>
@@ -189,7 +189,7 @@ namespace ASI.Basecode.Data.Migrations
 
                     b.HasIndex("BookId1");
 
-                    b.ToTable("Review");
+                    b.ToTable("Review", (string)null);
                 });
 
             modelBuilder.Entity("ASI.Basecode.Data.Models.User", b =>
@@ -244,7 +244,7 @@ namespace ASI.Basecode.Data.Migrations
                     b.HasIndex(new[] { "UserId" }, "UQ__Users__1788CC4D5F4A160F")
                         .IsUnique();
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

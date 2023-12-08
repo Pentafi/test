@@ -1,7 +1,8 @@
 ﻿using ASI.Basecode.Data.Models;
 using ASI.Basecode.Services.ServiceModels;
 using Microsoft.AspNetCore.Identity;
-using System.Linq;
+using System.IO;
+using System;
 using System.Threading.Tasks;
 using static ASI.Basecode.Resources.Constants.Enums;
 
@@ -14,9 +15,5 @@ namespace ASI.Basecode.Services.Interfaces
         IdentityUser FindUser(string userName);
         Task<IdentityUser> FindUserAsync(string userName, string password);
         Task<IdentityResult> CreateRole(string roleName);
-        IQueryable<IdentityRole> GetRoles();
-        IQueryable<User> GetUsers();
-        Task UpdateUser(UserViewModel model);
-        Task DeleteUser(string userId);
     }
 }
