@@ -2,6 +2,8 @@
 using ASI.Basecode.Data.Models;
 using Basecode.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ASI.Basecode.Data.Repositories
@@ -16,7 +18,6 @@ namespace ASI.Basecode.Data.Repositories
         {
             return GetDbSet<Review>();
         }
-
         public Review GetReviewById(int id)
         {
             return GetDbSet<Review>().Find(id);
@@ -25,17 +26,12 @@ namespace ASI.Basecode.Data.Repositories
         public IQueryable<Review> GetReviewsByBook(Book book)
         {
             return GetDbSet<Review>().Where(x => x.Id == book.Id);
+
         }
 
         public void AddReview(Review review)
         {
             GetDbSet<Review>().Add(review);
-            UnitOfWork.SaveChanges();
-        }
-
-        public void UpdateReview(Review review)
-        {
-            GetDbSet<Review>().Update(review);
             UnitOfWork.SaveChanges();
         }
 
@@ -49,9 +45,15 @@ namespace ASI.Basecode.Data.Repositories
             }
         }
 
+        public void UpdateReview(Review review)
+        {
+            this.SetEntityState(review, EntityState.Modified);
+            UnitOfWork.SaveChanges();
+        }
         public bool ReviewExists(int id)
         {
             return GetDbSet<Review>().Any(x => x.Id == id);
         }
     }
 }
+
